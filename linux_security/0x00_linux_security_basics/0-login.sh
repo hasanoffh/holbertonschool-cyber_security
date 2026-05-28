@@ -1,2 +1,2 @@
 #!/bin/bash
-last -5
+/usr/bin/last -5
