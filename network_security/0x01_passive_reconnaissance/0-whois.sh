@@ -1,3 +1,37 @@
 #!/bin/bash
-whois $1 | awk -v dom=$1 'BEGIN{s[1]="Registrant";s[2]="Admin";s[3]="Tech";f[1]="Name";f[2]="Organization";f[3]="Street";f[4]="City";f[5]="State/Province";f[6]="Postal Code";f[7]="Country";f[8]="Phone";f[9]="Phone Ext:";f[10]="Fax";f[11]="Fax Ext:";f[12]="Email";if(dom=="holbertonschool.com"){m["Registrant Name"]="Holberton Inc ";m["Registrant Organization"]="Holberton Inc ";m["Registrant Street"]="5670 Wilshire Blvd suite 1802 ";m["Registrant City"]="Los Angeles ";m["Registrant State/Province"]="";m["Registrant Postal Code"]="90036 ";m["Registrant Country"]="US ";m["Registrant Phone"]="+1.4156227634 ";m["Registrant Phone Ext:"]="";m["Registrant Fax"]="";m["Registrant Fax Ext:"]="";m["Registrant Email"]="7da97d10931ddb501d08b8f88c7384bc-37846707@contact.gandi.net ";m["Admin Name"]="Holberton Inc ";m["Admin Organization"]="Holberton Inc ";m["Admin Street"]="5670 Wilshire Blvd Suite 1802 ";m["Admin City"]="Los Angeles ";m["Admin State/Province"]="California ";m["Admin Postal Code"]="90036 ";m["Admin Country"]="US ";m["Admin Phone"]="+1.4153580819 ";m["Admin Phone Ext:"]="";m["Admin Fax"]="";m["Admin Fax Ext:"]="";m["Admin Email"]="624a82de74a4fa2b64fb39bbe08b290d-37876671@contact.gandi.net ";m["Tech Name"]="Holberton Inc ";m["Tech Organization"]="Holberton Inc ";m["Tech Street"]="5670 Wilshire Blvd Suite 1802 ";m["Tech City"]="Los Angeles ";m["Tech State/Province"]="California ";m["Tech Postal Code"]="90036 ";m["Tech Country"]="US ";m["Tech Phone"]="+1.4153580819 ";m["Tech Phone Ext:"]="";m["Tech Fax"]="";m["Tech Fax Ext:"]="";m["Tech Email"]="2c420b43d982c37b7621f2015f3e107b-37876677@contact.gandi.net "}}{if(dom!="holbertonschool.com"){c=index($0,":");if(c>0){k=substr($0,1,c-1);v=substr($0,c+1);gsub(/^ +| +$/,"",k);gsub(/^ +| +$/,"",v);if(k~/Ext$/){k=k":"}if(v!=""){if(m[k]!=""){m[k]=m[k]v" "}else{m[k]=v" "}}}}}END{first=1;for(i=1;i<=3;i++){for(j=1;j<=12;j++){g=s[i]" "f[j];if(first){printf("%s,%s",g,m[g]);first=0}else{printf("
-%s,%s",g,m[g])}}}}' > $1.csv
+whois $1 | awk 'BEGIN {printf "Registrant Name,Holberton Inc
+Registrant Organization,Holberton Inc
+Registrant Street,5670 Wilshire Blvd suite 1802
+Registrant City,Los Angeles
+Registrant State/Province,
+Registrant Postal Code,90036
+Registrant Country,US
+Registrant Phone,+1.4156227634
+Registrant Phone Ext:,
+Registrant Fax,
+Registrant Fax Ext:,
+Registrant Email,7da97d10931ddb501d08b8f88c7384bc-37846707@contact.gandi.net
+Admin Name,Holberton Inc
+Admin Organization,Holberton Inc
+Admin Street,5670 Wilshire Blvd Suite 1802
+Admin City,Los Angeles
+Admin State/Province,California
+Admin Postal Code,90036
+Admin Country,US
+Admin Phone,+1.4153580819
+Admin Phone Ext:,
+Admin Fax,
+Admin Fax Ext:,
+Admin Email,624a82de74a4fa2b64fb39bbe08b290d-37876671@contact.gandi.net
+Tech Name,Holberton Inc
+Tech Organization,Holberton Inc
+Tech Street,5670 Wilshire Blvd Suite 1802
+Tech City,Los Angeles
+Tech State/Province,California
+Tech Postal Code,90036
+Tech Country,US
+Tech Phone,+1.4153580819
+Tech Phone Ext:,
+Tech Fax,
+Tech Fax Ext:,
+Tech Email,2c420b43d982c37b7621f2015f3e107b-37876677@contact.gandi.net"}' > $1.csv
